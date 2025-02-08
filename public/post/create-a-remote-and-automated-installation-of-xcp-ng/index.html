@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Create a remote and automated installation of XCP-ng | William&#39;s blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="
@@ -14,16 +14,16 @@ To do so, I decided to try out a virtualisation hypervisor called XCP-ng
 What is XCP-ng
 XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.">
 <meta name="author" content="">
-<link rel="canonical" href="//localhost:1313/post/create-a-remote-and-automated-installation-of-xcp-ng/">
+<link rel="canonical" href="/post/create-a-remote-and-automated-installation-of-xcp-ng/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/post/create-a-remote-and-automated-installation-of-xcp-ng/">
+<link rel="alternate" hreflang="en" href="/post/create-a-remote-and-automated-installation-of-xcp-ng/">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,7 +60,76 @@ XCP-ng is an open-source virtualisation hypervisor released in 2008 based on Xen
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="/post/create-a-remote-and-automated-installation-of-xcp-ng/">
+  <meta property="og:site_name" content="William&#39;s blog">
+  <meta property="og:title" content="Create a remote and automated installation of XCP-ng">
+  <meta property="og:description" content="
+Introduction I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances. To do so, I decided to try out a virtualisation hypervisor called XCP-ng
+What is XCP-ng XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-02-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-08T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Create a remote and automated installation of XCP-ng">
+<meta name="twitter:description" content="
+Introduction
+I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
+To do so, I decided to try out a virtualisation hypervisor called XCP-ng
+What is XCP-ng
+XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/post/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Create a remote and automated installation of XCP-ng",
+      "item": "/post/create-a-remote-and-automated-installation-of-xcp-ng/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Create a remote and automated installation of XCP-ng",
+  "name": "Create a remote and automated installation of XCP-ng",
+  "description": "\nIntroduction I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances. To do so, I decided to try out a virtualisation hypervisor called XCP-ng\nWhat is XCP-ng XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "\nIntroduction I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances. To do so, I decided to try out a virtualisation hypervisor called XCP-ng\nWhat is XCP-ng XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.\nHow to install it The XCP-NG hypervisor can be install with a usb drive or a DVD but, it can also be installed remotely with PXE (Preboot Execution Environment) and the installation process can also be automated with an answerfile.\nTo have a install process that I can start whenever I have a problem with my XCP-ng server, I chose to use the PXE and answerfile installation configuration.\nBut for this to work, you need to have multiple servers:\nFor PXE you need : A DHCP server that will tell the client computer where the PXE server is A TFTP server to give the bootable image to the client machine (the grub) and host the installation files And for the answerfile you need a HTTP server to host it. For all these servers/services, I created a VM using Vagrant, Vmware workstation and Ansible to configure the servers on the VM.\nThe full project is accessible GitHub [here][https://github.com/MrWillTurner/pxe-xcp-ng]\nRequirements For this project, I needed to install the following programs:\nVagrant Vagrant plugin vagrant-vmware-desktop VMWare workstation (or Fusion) Ansible( on MacOS use brew install ansible ) Configuration Vagrant To configure Vagrant, I create the folowing ‘Vagrantfile’:\nserver_ip=\"192.168.1.20\" bridge_interface=\"en0\" Vagrant.configure(\"2\") do |config| config.vm.define \"server\" do |server| server.vm.box = \"gyptazy/ubuntu22.04-arm64\" server.vm.network \"public_network\", bridge: bridge_interface, ip: server_ip server.vm.provider \"vmware_desktop\" server.vm.provision :ansible do |ansible| ansible.playbook = \"playbook.yml\" ansible.extra_vars = { server_ip: server_ip } end end end In the first part of the file, there are two variables:\nThe IP address that the VM will take on the local network The network interface that the VM will take on the machine which it runs These variables were created to make it easier to change the configuration to reflect the network and PC setup of other people. The rest of the file defies the VM that Vagrant creates:\nUse the image “gyptazy/ubuntu22.04-arm64” as the OS Connect the VM to the public_network (the host network) and use the physical network interface and the ip address defined Use the provider “vmware_desktop” to build the VM Then, use Ansibe to provision the VM with th playbook named “playbook.yml” and the variable of the VM ip address Ansible I configured Ansible by creating a playbook.yml file and role folders for all the different services I needed to install and, a XCP-ng role to automatically download the ISO image to push to the client host.\nThe playbook:\n- hosts: all roles: - role: dhcp - role: tftp - role: http - role: xcp-ng The roles: For each role I created 2 or 3 folders:\nThe handlers folder : where I created a restart task to reboot the service once installed and configured\nExample of the main.yml file in the dhcp/handlers folder:\n--- - name: restart dhcp systemd: name: isc-dhcp-server state: restarted daemon_reload: yes enabled: yes The tasks folder: where I defined the commands that need to be executed to install the service\nExample of the main.yml file in the dhcp/tasks folder:\n--- - name: install isc-dhcp-server apt: name: isc-dhcp-server state: present - name: configure isc-dhcp-server interface template: src: isc-dhcp-server dest: /etc/default/ notify: restart dhcp - name: configure dhcpd.conf template: src: dhcpd.conf dest: /etc/dhcp/ notify: restart dhcp And a templates folder where I defined all the services configuration files (embedded with variables for DHCP and XCP-ng files)\nExample of the dhcpd.conf file in the dhcp/templates folder:\nsubnet 192.168.1.0 netmask 255.255.255.0 { range 192.168.1.150 192.168.1.200; option routers 192.168.1.1; option domain-name-servers 8.8.8.8; default-lease-time 600; max-lease-time 7200; next-server {{server_ip}}; filename \"/EFI/xenserver/grubx64.efi\"; } For the XCP-ng role I created the tasks needed to download and configure the PXE grub and the answerfile\nAnswerfile:\n\u003c?xml version=\"1.0\"?\u003e nvme0n1 fr 8.8.8.8 ty7YzK2wzb2N Europe/Paris http://mirrors.xcp-ng.org/netinstall/8.3/ This answerfile defines all the parameters needed for installing XCP-NG\nUse the program To execute the the program after downloading it from Github and installing the requirements, you only need to go in the project folder and execute the command:\nvagrant up After the VM has finished it’s configuraton, you need to start the client PC, go in the BIOS, and enable UEFI PXE Support and set the 1st Boot device on UEFI PXE (you will probably need to check your manufacture BIOS setup as every BIOS configuration is different)\nElements to improve The project worked well to automate my installation of XCP-ng remotely but, there are some elements to improve:\nUse more variables for an easy personalised install : At the moment there are only variables for the VM ip address and the network bridge interface. There needs to be more variables to personalise the installation to other setups ( for example: the dhcp network definition)\nFix the answerfile admin-interface: The answerfile is configured to install the XCP-ng server using an IP address served by the network dhcp but should be a fixed IP address.\n",
+  "wordCount" : "875",
+  "inLanguage": "en",
+  "datePublished": "2025-02-08T00:00:00Z",
+  "dateModified": "2025-02-08T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/create-a-remote-and-automated-installation-of-xcp-ng/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "William's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -78,7 +147,7 @@ XCP-ng is an open-source virtualisation hypervisor released in 2008 based on Xen
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="William&#39;s blog (Alt + H)">William&#39;s blog</a>
+            <a href="/" accesskey="h" title="William&#39;s blog (Alt + H)">William&#39;s blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -281,7 +350,7 @@ you only need to go in the project folder and execute the command:</p>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="//localhost:1313/">William&#39;s blog</a></span> · 
+        <span>&copy; 2025 <a href="/">William&#39;s blog</a></span> · 
 
     <span>
         Powered by
