@@ -13,7 +13,7 @@
       <link>/post/create-a-remote-and-automated-installation-of-xcp-ng/</link>
       <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
       <guid>/post/create-a-remote-and-automated-installation-of-xcp-ng/</guid>
-      <description>&lt;p&gt;&lt;img alt=&#34;Image Description&#34; loading=&#34;lazy&#34; src=&#34;/images/xcp-ng_logo.png&#34;&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img alt=&#34;xcpng_logo&#34; loading=&#34;lazy&#34; src=&#34;/images/xcp-ng_logo.png&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
 To do so, I decided to try out a virtualisation hypervisor called XCP-ng&lt;/p&gt;

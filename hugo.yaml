@@ -1,0 +1,15 @@
+baseURL : ''
+languageCode : 'en-us'
+title : "William's blog"
+theme : ["PaperMod"]
+
+params:
+  homeInfoParams:
+    Title: Hi there
+    Content: Welcome to my blog
+  socialIcons: # optional
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/mrwilliamturner/"
+  description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
+  keywords: [Blog, Portfolio, PaperMod]
+  ShowToc : true
