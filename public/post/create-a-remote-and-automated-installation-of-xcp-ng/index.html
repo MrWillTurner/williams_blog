@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Create a remote and automated installation of XCP-ng | William&#39;s blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+Introduction
+I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
+To do so, I decided to try out a virtualisation hypervisor called XCP-ng
+What is XCP-ng
+XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.">
+<meta name="author" content="">
+<link rel="canonical" href="//localhost:1313/post/create-a-remote-and-automated-installation-of-xcp-ng/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/post/create-a-remote-and-automated-installation-of-xcp-ng/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="William&#39;s blog (Alt + H)">William&#39;s blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Create a remote and automated installation of XCP-ng
+    </h1>
+    <div class="post-meta"><span title='2025-02-08 00:00:00 +0000 UTC'>February 8, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><img alt="Image Description" loading="lazy" src="/images/xcp-ng_logo.png"></p>
+<h1 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h1>
+<p>I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
+To do so, I decided to try out a virtualisation hypervisor called XCP-ng</p>
+<h2 id="what-is-xcp-ng">What is XCP-ng<a hidden class="anchor" aria-hidden="true" href="#what-is-xcp-ng">#</a></h2>
+<p>XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.</p>
+<h2 id="how-to-install-it">How to install it<a hidden class="anchor" aria-hidden="true" href="#how-to-install-it">#</a></h2>
+<p>The XCP-NG hypervisor can be install with a usb drive or a DVD but, it can also be installed remotely with PXE (<strong>Preboot Execution Environment</strong>) and the installation process can also be automated with an answerfile.</p>
+<p>To have a install process that I can start whenever I have a problem with my XCP-ng server, I chose to use the PXE and answerfile installation configuration.</p>
+<p>But for this to work, you need to have multiple servers:</p>
+<ul>
+<li>For PXE you need :
+<ul>
+<li>A DHCP server that will tell the client computer where the PXE server is</li>
+<li>A TFTP server to give the bootable image to the client machine (the grub) and host the installation files
+And for the answerfile you need a HTTP server to host it.</li>
+</ul>
+</li>
+</ul>
+<p>For all these servers/services, I  created a VM using Vagrant, Vmware workstation and  Ansible to configure the servers on the VM.</p>
+<p>The full project is accessible GitHub [here][https://github.com/MrWillTurner/pxe-xcp-ng]</p>
+<h1 id="requirements">Requirements<a hidden class="anchor" aria-hidden="true" href="#requirements">#</a></h1>
+<p>For this project, I needed to install the following programs:</p>
+<ul>
+<li><a href="https://developer.hashicorp.com/vagrant/install">Vagrant</a>
+<ul>
+<li>Vagrant plugin <a href="https://developer.hashicorp.com/vagrant/docs/providers/vmware/installation">vagrant-vmware-desktop</a></li>
+</ul>
+</li>
+<li><a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">VMWare workstation (or Fusion)</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html">Ansible</a>( on MacOS use  <code>brew install ansible</code> )</li>
+</ul>
+<h1 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h1>
+<h2 id="vagrant">Vagrant<a hidden class="anchor" aria-hidden="true" href="#vagrant">#</a></h2>
+<p>To configure Vagrant, I create the folowing &lsquo;Vagrantfile&rsquo;:</p>
+<pre tabindex="0"><code>server_ip=&#34;192.168.1.20&#34;
+bridge_interface=&#34;en0&#34;
+
+Vagrant.configure(&#34;2&#34;) do |config|
+  config.vm.define &#34;server&#34; do |server|
+    server.vm.box = &#34;gyptazy/ubuntu22.04-arm64&#34;
+    server.vm.network &#34;public_network&#34;, bridge: bridge_interface, ip: server_ip
+    server.vm.provider &#34;vmware_desktop&#34;
+
+    server.vm.provision :ansible do |ansible|
+      ansible.playbook = &#34;playbook.yml&#34;
+      ansible.extra_vars = {
+        server_ip: server_ip
+      }
+    end
+  end
+end
+</code></pre><p>In the first part of the file, there are two variables:</p>
+<ul>
+<li>The IP address that the VM will take on the local network</li>
+<li>The network interface that the VM will take on the machine which it runs
+These variables were created to make it easier to change the configuration to reflect the network and PC setup of other people.</li>
+</ul>
+<p>The rest of the file defies the VM that Vagrant creates:</p>
+<ul>
+<li>Use the image &ldquo;gyptazy/ubuntu22.04-arm64&rdquo; as the OS</li>
+<li>Connect the VM to the public_network (the host network) and use the physical network interface and the ip address defined</li>
+<li>Use the provider &ldquo;vmware_desktop&rdquo; to build the VM</li>
+<li>Then, use Ansibe to provision the VM with th playbook named &ldquo;playbook.yml&rdquo; and the variable of the VM ip address</li>
+</ul>
+<h2 id="ansible">Ansible<a hidden class="anchor" aria-hidden="true" href="#ansible">#</a></h2>
+<p>I configured Ansible by creating a playbook.yml file and role folders for all the different services I needed to install and, a XCP-ng role to automatically download the ISO image to push to the client host.</p>
+<p>The playbook:</p>
+<pre tabindex="0"><code>- hosts: all
+roles:
+	- role: dhcp
+	- role: tftp
+	- role: http
+	- role: xcp-ng
+</code></pre><p>The roles:
+<img loading="lazy" src="/images/ansible_roles.png"></p>
+<p>For each role I created 2 or 3 folders:</p>
+<ul>
+<li>
+<p>The handlers folder : where I created a restart task to reboot the service once installed and configured</p>
+<p>Example of the main.yml file in the dhcp/handlers  folder:</p>
+<pre tabindex="0"><code>---
+- name: restart dhcp
+  systemd:
+    name: isc-dhcp-server
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+</code></pre></li>
+<li>
+<p>The tasks folder: where I defined the commands that need to be executed to install the service</p>
+<p>Example of the main.yml file in the dhcp/tasks folder:</p>
+<pre tabindex="0"><code>---
+- name: install isc-dhcp-server
+  apt:
+    name: isc-dhcp-server
+    state: present
+
+- name: configure isc-dhcp-server interface
+  template:
+    src: isc-dhcp-server
+    dest: /etc/default/
+  notify: restart dhcp
+
+- name: configure dhcpd.conf
+  template:
+    src: dhcpd.conf
+    dest: /etc/dhcp/
+  notify: restart dhcp
+</code></pre></li>
+<li>
+<p>And a templates folder where I defined all the services configuration files (embedded with variables for DHCP and XCP-ng files)</p>
+<p>Example of the dhcpd.conf file in the dhcp/templates folder:</p>
+<pre tabindex="0"><code>subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.150 192.168.1.200; 
+  option routers 192.168.1.1;
+  option domain-name-servers 8.8.8.8;
+  default-lease-time 600; max-lease-time 7200;
+  next-server {{server_ip}};
+  filename &#34;/EFI/xenserver/grubx64.efi&#34;;
+  }
+</code></pre></li>
+</ul>
+<p>For the XCP-ng role I created the tasks needed to download and configure the PXE grub and the answerfile</p>
+<p>Answerfile:</p>
+<pre tabindex="0"><code>&lt;?xml version=&#34;1.0&#34;?&gt;
+    &lt;installation srtype=&#34;ext&#34;&gt;
+        &lt;primary-disk&gt;nvme0n1&lt;/primary-disk&gt;
+        &lt;keymap&gt;fr&lt;/keymap&gt;
+        &lt;admin-interface name=&#34;eth0&#34; proto=&#34;dhcp&#34; /&gt;
+        &lt;name-server&gt;8.8.8.8&lt;/name-server&gt;
+        &lt;root-password&gt;ty7YzK2wzb2N&lt;/root-password&gt;
+        &lt;timezone&gt;Europe/Paris&lt;/timezone&gt;
+        &lt;source type=&#34;url&#34;&gt;http://mirrors.xcp-ng.org/netinstall/8.3/&lt;/source&gt;
+    &lt;/installation&gt;
+</code></pre><p>This answerfile defines all the parameters needed for installing XCP-NG</p>
+<h1 id="use-the-program">Use the program<a hidden class="anchor" aria-hidden="true" href="#use-the-program">#</a></h1>
+<p>To execute the the program after downloading it from Github and installing the requirements,
+you only need to go in the project folder and execute the command:</p>
+<pre tabindex="0"><code>vagrant up
+</code></pre><p>After the VM has finished it&rsquo;s  configuraton, you need to start the client PC, go in the BIOS, and   enable <strong>UEFI PXE Support</strong> and set the 1st Boot device on UEFI PXE (you will probably need to check your manufacture BIOS setup as every BIOS configuration is different)</p>
+<h1 id="elements-to-improve">Elements to improve<a hidden class="anchor" aria-hidden="true" href="#elements-to-improve">#</a></h1>
+<p>The project worked well to automate my installation of XCP-ng remotely but, there are some elements to improve:</p>
+<ul>
+<li>
+<p><strong>Use more variables for an easy personalised install</strong> : At the moment there are only variables for the VM ip address and the network bridge interface. There needs to be more variables to personalise the installation to other setups ( for example: the dhcp network definition)</p>
+</li>
+<li>
+<p><strong>Fix the answerfile admin-interface</strong>: The answerfile is configured to install the XCP-ng server using an IP address served by the network dhcp but should be a fixed IP address.</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="//localhost:1313/">William&#39;s blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
