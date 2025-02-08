@@ -5,7 +5,7 @@ date: 2025-02-08
 
 
 
-![Image Description](/images/xcp-ng_logo.png)
+![xcpng_logo](/images/xcp-ng_logo.png)
 # Introduction
 
 I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
@@ -25,11 +25,12 @@ But for this to work, you need to have multiple servers:
 - For PXE you need : 
 	- A DHCP server that will tell the client computer where the PXE server is
 	- A TFTP server to give the bootable image to the client machine (the grub) and host the installation files
-And for the answerfile you need a HTTP server to host it.
+- For the answerfile you need:
+ 	- A HTTP server to host the file.
 
 For all these servers/services, I  created a VM using Vagrant, Vmware workstation and  Ansible to configure the servers on the VM.
 
-The full project is accessible GitHub [here][https://github.com/MrWillTurner/pxe-xcp-ng]
+The full project is accessible GitHub [here](https://github.com/MrWillTurner/pxe-xcp-ng)
 # Requirements
 
 For this project, I needed to install the following programs:
@@ -67,7 +68,7 @@ end
 In the first part of the file, there are two variables:
 - The IP address that the VM will take on the local network
 - The network interface that the VM will take on the machine which it runs
-These variables were created to make it easier to change the configuration to reflect the network and PC setup of other people.
+These variables were created to make it easier to change the configuration to reflect the network and PC setup of other people.<br><br>
 
 The rest of the file defies the VM that Vagrant creates:
 - Use the image "gyptazy/ubuntu22.04-arm64" as the OS
@@ -89,9 +90,9 @@ roles:
 ```
 
 The roles:
-![](/images/ansible_roles.png)
+![ansible_roles](/images/ansible_roles.png)
 
-For each role I created 2 or 3 folders:
+For each role I created 2 or 3 folders:  
 - The handlers folder : where I created a restart task to reboot the service once installed and configured
 
 	Example of the main.yml file in the dhcp/handlers  folder:
