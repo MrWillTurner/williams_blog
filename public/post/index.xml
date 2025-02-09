@@ -17,7 +17,7 @@
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
 To do so, I decided to try out a virtualisation hypervisor called XCP-ng&lt;/p&gt;
-&lt;h2 id=&#34;what-is-xcp-ng&#34;&gt;What is XCP-ng&lt;/h2&gt;
+&lt;h1 id=&#34;what-is-xcp-ng&#34;&gt;What is XCP-ng&lt;/h1&gt;
 &lt;p&gt;XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -11,7 +11,7 @@ date: 2025-02-08
 I recently bought a new computer where I wanted to create virtual machines to try out new DevOps tools and AI models in separated instances.
 To do so, I decided to try out a virtualisation hypervisor called XCP-ng
 
-## What is XCP-ng 
+# What is XCP-ng 
 
 XCP-ng is an open-source virtualisation hypervisor released in 2008 based on XenServer. Like VMWare, XCP-ng comes with an Orchestrator called Xen Orchestra that will be used to manage the virtual machines on the different XCP-ng machines. 
 

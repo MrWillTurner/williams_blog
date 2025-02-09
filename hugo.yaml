@@ -5,11 +5,16 @@ theme : ["PaperMod"]
 
 params:
   homeInfoParams:
-    Title: Hi there
-    Content: Welcome to my blog
-  socialIcons: # optional
+    Title: Welcome to my blog.
+    Content: >
+      - My name is William and I'm a DevOps Engineer living in Lyon/France 
+
+      - I created this blog to share my projects related to DevOps and AI tools   
+  socialIcons: 
     - name: "linkedin"
       url: "https://www.linkedin.com/in/mrwilliamturner/"
+    - name: "github"
+      url: "https://github.com/MrWillTurner"
   description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
   keywords: [Blog, Portfolio, PaperMod]
   ShowToc : true
