@@ -15,6 +15,6 @@ params:
       url: "https://www.linkedin.com/in/mrwilliamturner/"
     - name: "github"
       url: "https://github.com/MrWillTurner"
-  description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
+  description: "William's Devops Blog"
   keywords: [Blog, Portfolio, PaperMod]
   ShowToc : true
